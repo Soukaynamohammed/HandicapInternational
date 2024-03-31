@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HandicapInternational.iml" filepath="$PROJECT_DIR$/HandicapInternational.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/HandicapInternational.iml" filepath="$PROJECT_DIR$/.idea/HandicapInternational.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.iml" />
     </modules>
   </component>
 </project>

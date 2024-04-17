@@ -5,11 +5,13 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent
+    ProfileComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

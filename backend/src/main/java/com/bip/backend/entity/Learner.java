@@ -1,11 +1,6 @@
 package com.bip.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
-import org.springframework.data.annotation.Id;
-
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 

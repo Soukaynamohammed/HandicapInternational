@@ -24,8 +24,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/api/public").permitAll()
                         .requestMatchers("/api/private").authenticated()
-                        .requestMatchers("/api/private-scoped").hasAuthority("read:messages")
-                );
+                        .requestMatchers("/api/private-scoped").hasAuthority("read:messages"));
 
         return http.build();
     }

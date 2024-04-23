@@ -2,6 +2,7 @@
 <button
   *ngIf="!(auth.isAuthenticated$ | async)"
   (click)="auth.loginWithRedirect()"
+  id="login"
 >
   Log in
 </button>

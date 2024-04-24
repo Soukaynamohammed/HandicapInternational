@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String text;
     private String option1;

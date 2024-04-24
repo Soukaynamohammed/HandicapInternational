@@ -4,5 +4,4 @@ import com.bip.backend.entity.Learner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LearnerRepository extends JpaRepository<Learner, Long> {
-        Learner getById();
 }

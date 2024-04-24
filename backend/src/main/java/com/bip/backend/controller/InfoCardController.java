@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/infocard")
 public class InfoCardController {
@@ -19,10 +18,8 @@ public class InfoCardController {
     private InfoCardRepository infoCardRepository;
 
     @GetMapping("/")
-    public String getAll(Model model){
-        List<InfoCard> infoCards = infoCardRepository.findAll();
-        model.addAttribute("infocards", infoCards);
-        return "infoCards";
+    public List<InfoCard> getAll() {
+        return infoCardRepository.findAll();
     }
-
 }
+

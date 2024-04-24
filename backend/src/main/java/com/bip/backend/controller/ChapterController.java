@@ -12,16 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chapters")
+@RequestMapping("/chapter")
 public class ChapterController {
     @Autowired
     private ChapterRepository chapterRepository;
 
-    @GetMapping("/chapters")
-    public String getAll(Model model){
-        List<Chapter> chapters = chapterRepository.findAll();
-        model.addAttribute("chapters", chapters);
-        return "chapter-list";
+    @GetMapping("/")
+    public List<Chapter> getAll(){
+        return chapterRepository.findAll();
     }
 
 

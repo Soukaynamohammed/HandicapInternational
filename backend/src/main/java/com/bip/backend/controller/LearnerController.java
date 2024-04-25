@@ -16,7 +16,7 @@ public class LearnerController {
     @Autowired
     private LearnerRepository learnerRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Learner> getAll() {
         return learnerRepository.findAll();
     }

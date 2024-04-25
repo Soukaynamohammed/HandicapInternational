@@ -17,7 +17,7 @@ public class InfoCardController {
     @Autowired
     private InfoCardRepository infoCardRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<InfoCard> getAll() {
         return infoCardRepository.findAll();
     }

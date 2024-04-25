@@ -1,6 +1,7 @@
 package com.bip.backend.entity;
 
 import jakarta.persistence.*;
+import org.w3c.dom.Text;
 
 @Entity
 public class InfoCard {
@@ -9,6 +10,7 @@ public class InfoCard {
     private int id;
     private int orderNumber;
     private String subtitle;
+    @Column(columnDefinition="TEXT")
     private String alineaText;
 
     @ManyToOne

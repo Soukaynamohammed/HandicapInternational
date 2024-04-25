@@ -17,7 +17,7 @@ public class ChapterController {
     @Autowired
     private ChapterRepository chapterRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Chapter> getAll(){
         return chapterRepository.findAll();
     }

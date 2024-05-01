@@ -10,10 +10,9 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "chapter_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "chapter_id", referencedColumnName = "id")
     private Chapter chapter;
-
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 

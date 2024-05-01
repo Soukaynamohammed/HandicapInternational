@@ -17,7 +17,7 @@ public class QuestionController {
     private QuestionRepository questionRepository;
 
     @GetMapping
-    public List<Question> getAllQuestions() {
+    public List<Question> getAll() {
         return questionRepository.findAll();
     }
 }

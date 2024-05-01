@@ -9,12 +9,54 @@ public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String title;
-    private int quizId;
+
+    @OneToOne(mappedBy = "chapter")
+    private Quiz quiz;
 
     @OneToMany(mappedBy = "chapter")
     private List<InfoCard> infoCards;
 
-    @OneToOne(mappedBy = "chapter")
-    private Quiz quiz;
+    public Chapter() {
+    }
+
+    public Chapter(int id, String title, Quiz quiz, List<InfoCard> infoCards) {
+        this.id = id;
+        this.title = title;
+        this.quiz = quiz;
+        this.infoCards = infoCards;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public List<InfoCard> getInfoCards() {
+        return infoCards;
+    }
+
+    public void setInfoCards(List<InfoCard> infoCards) {
+        this.infoCards = infoCards;
+    }
 }

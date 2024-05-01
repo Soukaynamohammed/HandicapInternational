@@ -1,5 +1,6 @@
 package com.bip.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,20 +13,20 @@ public class Chapter {
 
     private String title;
 
-    @OneToOne(mappedBy = "chapter")
+    @OneToOne(mappedBy = "chapter", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Quiz quiz;
 
     @OneToMany(mappedBy = "chapter")
+    @JsonIgnore
     private List<InfoCard> infoCards;
 
     public Chapter() {
     }
 
-    public Chapter(int id, String title, Quiz quiz, List<InfoCard> infoCards) {
+    public Chapter(int id, String title) {
         this.id = id;
         this.title = title;
-        this.quiz = quiz;
-        this.infoCards = infoCards;
     }
 
     public int getId() {

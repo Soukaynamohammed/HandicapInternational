@@ -1,10 +1,12 @@
 package com.bip.backend.controller;
 
+import com.bip.backend.entity.InfoCard;
 import com.bip.backend.entity.Question;
 import com.bip.backend.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +21,9 @@ public class QuestionController {
     @GetMapping
     public List<Question> getAll() {
         return questionRepository.findAll();
+    }
+    @GetMapping("/{quizid}")
+    public List<Question> getByChapterId(@PathVariable("quizid") int quizid){
+        return questionRepository.findByQuizId(quizid);
     }
 }

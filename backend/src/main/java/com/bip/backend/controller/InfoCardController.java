@@ -21,5 +21,10 @@ public class InfoCardController {
     public List<InfoCard> getAll() {
         return infoCardRepository.findAll();
     }
+
+    @GetMapping("/{chapterid}")
+    public List<InfoCard> getByChapterId(@PathVariable("chapterid") int chapterId){
+        return infoCardRepository.findByChapterId(chapterId);
+    }
 }
 

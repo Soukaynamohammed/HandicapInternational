@@ -1,5 +1,6 @@
 package com.bip.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Quiz {
     @JoinColumn(name = "chapter_id", referencedColumnName = "id")
     private Chapter chapter;
     @OneToMany(mappedBy = "quiz")
+    @JsonIgnore
     private List<Question> questions;
 
     public Quiz() {

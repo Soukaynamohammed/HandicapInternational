@@ -7,8 +7,5 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend';
-  constructor(public auth: AuthService) {}
-
-  protected readonly document = document;
+ 
 }

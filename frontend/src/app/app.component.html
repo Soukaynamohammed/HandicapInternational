@@ -1,24 +1,5 @@
-<div>
-  <app-side-bar></app-side-bar>
-  <div id="white-side-bar">
-    <img src="/assets/HI-logo.jpg" alt="" />
-    <button
-      *ngIf="!(auth.isAuthenticated$ | async)"
-      (click)="auth.loginWithRedirect()"
-      id="login"
-    >
-      Log in
-    </button>
-  </div>
-</div>
-<button
-  *ngIf="auth.isAuthenticated$ | async"
-  (click)="
-    auth.logout({ logoutParams: { returnTo: document.location.origin } })
-  "
->
-  Log out
-</button>
-<app-profile *ngIf="auth.isAuthenticated$ | async"></app-profile>
+<router-outlet>
+    
+</router-outlet>
 
-<router-outlet />
+

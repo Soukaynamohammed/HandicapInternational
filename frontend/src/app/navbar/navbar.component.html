@@ -1,0 +1,31 @@
+<div class="fixed left-0 top-0 h-full bg-blue-900 w-64 flex flex-col justify-between">
+    <!-- Bovenste deel van de zijbalk -->
+    <div>
+        <!-- Profielafbeelding, gebruikersnaam en e-mail -->
+        <div *ngIf="auth.user$ | async as user" class="text-center mt-4">
+            <img [src]="user.picture" alt="Profile Picture" class="rounded-full mx-auto mb-4">
+            <h2 class="text-white text-lg font-bold">{{ user.name }}</h2>
+            <p class="text-white">{{ user.email }}</p>
+        </div>
+        <!-- Knoppen Dashboard en Contact Page -->
+        <div class="mt-4 text-center">
+            <button class="text-white px-10 block hover:font-bold mt-60 ">
+                <img src="assets/icons/house-solid.svg" alt="House Icon" class="w-6 h-6 inline-block mr-2 " >Dashboard
+            </button>
+            <button class="text-white px-10 block hover:font-bold mt-4">
+                <img src="assets/icons/address-card-solid.svg" alt="House Icon" class="w-6 h-6 inline-block mr-2">Contact Page
+            </button>
+        </div>
+        
+    </div>
+    
+    <!-- Onderste deel van de zijbalk -->
+    <div class="mb-20 text-center" >
+        <!-- Logout knop -->
+        <button *ngIf="auth.isAuthenticated$ | async"
+            (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"
+            class="font-bold bg-white text-blue-900 px-4 py-2 rounded-full mx-auto block">
+            Log Out
+        </button>
+    </div>
+</div>

@@ -32,8 +32,8 @@ import { CommonModule } from '@angular/common';
     }),
     RouterModule.forRoot([
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'login', component: LoginComponent },
     ]),
     CommonModule,
     AppRoutingModule

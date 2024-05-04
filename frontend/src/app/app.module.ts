@@ -7,7 +7,7 @@ import { ProfileComponent } from './profile.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
@@ -31,8 +31,9 @@ import { CommonModule } from '@angular/common';
       }
     }),
     RouterModule.forRoot([
-      {path: "", component: LoginComponent},
-      {path: "dashboard", component: DashboardComponent}
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
     ]),
     CommonModule,
     AppRoutingModule

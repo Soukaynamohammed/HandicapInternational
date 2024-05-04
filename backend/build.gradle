@@ -30,6 +30,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'com.auth0:auth0-spring-security-api:1.4.1'
+	implementation 'com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre11'
 }
 
 tasks.named('test') {

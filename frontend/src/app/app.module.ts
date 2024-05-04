@@ -1,15 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthModule } from '@auth0/auth0-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
+import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent
+    ProfileComponent,
+    SideBarComponent,
+    LoginComponent,
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +30,12 @@ import { ProfileComponent } from './profile.component';
         redirect_uri: window.location.origin
       }
     }),
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+    ]),
+    CommonModule,
     AppRoutingModule
   ],
   providers: [],

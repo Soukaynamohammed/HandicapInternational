@@ -1,5 +1,5 @@
-<button *ngIf="!(auth.isAuthenticated$ | async)" (click)="auth.loginWithRedirect()">Log in</button>
-<button *ngIf="auth.isAuthenticated$ | async" (click)="auth.logout({ logoutParams: {returnTo: document.location.origin }})">Log out</button>
-<app-profile *ngIf="auth.isAuthenticated$ | async"></app-profile>
+<router-outlet>
+    
+</router-outlet>
 
-<router-outlet />
+

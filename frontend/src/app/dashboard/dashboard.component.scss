@@ -1,0 +1,85 @@
+#chaptersTekst{
+    font-size: 2vw;
+    color: black;
+    grid-column: 1/2;
+    margin: -2vh 0 -6vh 23vw ;
+}
+
+#dashboard{
+    height: 100vh;
+    background-color: white;
+}
+
+.chapterButtons{
+    height: 7vh;
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    font-size: 4vh;
+    display: block;
+    border: 2px solid black;
+    padding: 2vh 10vw 8vh 10vw;
+    border-radius: 1rem;
+    margin: 5vh 2vw auto auto ;
+}
+
+.sideTextChapters{
+    font-weight: 200;
+    font-size: 3vh;
+}
+
+#chapterButtonsDiv{
+    margin-top: 10vh;
+}
+
+.mx-auto{
+    width: 60vw;
+    text-align: center;
+}
+
+.chapterButtons:hover{
+    background-color: rgba(83, 85, 214, 0.088);
+}
+
+.chapterButtonsCollection{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 3vw;
+}
+
+.score{
+    border: 2px solid black;
+    height: 7vh;
+    padding: 2vh 1vw 8vh 1vw;
+    border-radius: 1rem;
+    font-weight: 500;
+    font-size: 2.2vh;
+    margin: 5vh 0;
+}
+
+.scorePercentage{
+    font-weight: 300;
+}
+
+#headTekst{
+    display: grid;
+    margin-bottom: -4vh;
+}
+
+
+#helpButton{
+    width: 6vw;
+    grid-column: 2/3;
+    font-size: 1.5vh;
+    font-weight: 600;
+    display: flex;
+    align-items: center; 
+    margin-right: -18vw;
+}
+
+#headTekst{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}

@@ -1,32 +1,38 @@
 <!-- login.component.html -->
-<div class="grid grid-cols-2">
+<div id="loginPageBody" class="grid grid-cols-2">
   <!-- Sidebar -->
   <div>
-      <app-side-bar></app-side-bar>
+    <app-side-bar></app-side-bar>
   </div>
-  
   <!-- Inhoud -->
-  <div class="flex flex-col justify-center items-center h-screen">
-    <div id="white-side-bar" class="mb-8"> <!-- Voeg wat ruimte onder de knop toe -->
-        <img src="/assets/HI-logo.jpg" alt="" />
-        <button
-            *ngIf="!(auth.isAuthenticated$ | async)"
-            (click)="auth.loginWithRedirect(); loginSuccess()"
-            id="login"
-            class="px-10 p-2 bg-blue-900 text-white rounded-md uppercase hover:font-bold"
-        >
-            Log in
-        </button>
+  <div i class="flex flex-col justify-center items-center h-screen">
+    <div id="welcomeText">
+      <h1>Welcome.</h1>
+      <br />
+      <h2>
+        Learn about Handicap International, Landmines and ammunition with us!
+      </h2>
+    </div>
+    <div id="white-side-bar" class="mb-8">
+      <!-- Voeg wat ruimte onder de knop toe -->
+      <button
+        *ngIf="!(auth.isAuthenticated$ | async)"
+        (click)="auth.loginWithRedirect(); loginSuccess()"
+        id="login"
+        class="px-10 p-2 bg-blue-900 text-white rounded-md uppercase hover:font-bold"
+      >
+        Log in
+      </button>
     </div>
     <button
-        *ngIf="auth.isAuthenticated$ | async"
-        (click)="
+      *ngIf="auth.isAuthenticated$ | async"
+      (click)="
         auth.logout({ logoutParams: { returnTo: document.location.origin } })
-        "
+      "
     >
-        Log out
+      Log out
     </button>
     <app-profile *ngIf="auth.isAuthenticated$ | async"></app-profile>
     <router-outlet />
-</div>
+  </div>
 </div>

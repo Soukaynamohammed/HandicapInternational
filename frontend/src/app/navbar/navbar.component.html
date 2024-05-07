@@ -1,4 +1,4 @@
-<div class="fixed left-0 top-0 h-full bg-blue-900 w-64 flex flex-col justify-between">
+<div class="fixed left-0 top-0 h-full bg-blue-900 w-1/6 flex flex-col justify-between">
     <!-- Bovenste deel van de zijbalk -->
     <div>
         <!-- Profielafbeelding, gebruikersnaam en e-mail -->
@@ -16,15 +16,15 @@
                 <img src="assets/icons/address-card-solid.svg" alt="House Icon" class="w-6 h-6 inline-block mr-2">Contact Page
             </button>
         </div>
-        
+
     </div>
-    
+
     <!-- Onderste deel van de zijbalk -->
     <div class="mb-20 text-center" >
         <!-- Logout knop -->
         <button *ngIf="auth.isAuthenticated$ | async"
             (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"
-            class="font-bold bg-white text-blue-900 px-4 py-2 rounded-full mx-auto block">
+            class="font-bold bg-white text-blue-900 px-4 py-2 rounded-md mx-auto block">
             Log Out
         </button>
     </div>

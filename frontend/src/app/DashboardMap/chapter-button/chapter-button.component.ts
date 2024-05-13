@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChaptersService } from '../chapters.service';
-import {Chapter} from '../chapters.service';
+import { ChaptersService } from '../../Services/chapters.service';
+import {Chapter} from  '../../Services/chapters.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,16 +26,16 @@ export class ChapterButtonComponent implements OnInit{
     })
   }
 
-  fetchChapterTitleById(id: number): void {
-    this.chapterService.getChapterTitleById(id).subscribe(
-      title => {
-        this.chapterTitle = title;
-      },
-      error => {
-        console.error('Ophalen van de titel van een chapter is misluk. Errorbericht: ', error);
-      }
-    );
-  }
+  // fetchChapterTitleById(id: number): void {
+  //   this.chapterService.getChapterTitleById(id).subscribe(
+  //     title => {
+  //       this.chapterTitle = title;
+  //     },
+  //     error => {
+  //       console.error('Ophalen van de titel van een chapter is misluk. Errorbericht: ', error);
+  //     }
+  //   );
+  // }
 
   navigateToChapter(chapter: number) {
     this.router.navigate(['/chapter', chapter]);

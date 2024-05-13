@@ -1,13 +1,3 @@
-<!-- <div *ngFor="let chapter of [1, 2, 3, 4]" class="chapterButtonsCollection">
-  <button (click)="navigateToChapter(chapter)" class="chapterButtons">
-    Chapter {{ chapter }}
-    <span class="sideTextChapters"> -  </span>
-  </button>
-  <h3 class="score">
-    Score
-    <p class="scorePercentage">80%</p>
-  </h3>
-</div> -->
 <div *ngFor="let chapter of chapters" class="chapterButtonsCollection">
   <button (click)="navigateToChapter(chapter.id)" class="chapterButtons">
     Chapter {{ chapter.id }}

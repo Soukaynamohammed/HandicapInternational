@@ -4,19 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { LoginComponent } from './login/login.component';
+import { SideBarComponent } from './LoginMap/side-bar/side-bar.component';
+import { LoginComponent } from './LoginMap/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './DashboardMap/dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
-import { ChapterButtonComponent } from './chapter-button/chapter-button.component';
+import { ChapterButtonComponent } from './DashboardMap/chapter-button/chapter-button.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ChapterComponent } from './chapter/chapter.component';
-import { GameComponent } from './game/game.component';
-import { LessenComponent } from './lessen/lessen.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { ChapterComponent } from './Chapters/chapter/chapter.component';
+import { GameComponent } from './Chapters/game/game.component';
+import { LessenComponent } from './Chapters/lessen/lessen.component';
+import { QuizComponent } from './QuizMap/quiz/quiz.component';
 
 
 @NgModule({

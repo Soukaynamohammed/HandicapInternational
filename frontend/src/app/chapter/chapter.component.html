@@ -1,8 +1,0 @@
-<div class="chapter-container" *ngIf="chapterId === 1">
-  <app-game></app-game>
-</div>
-
-<div class="chapter-container" *ngIf="chapterId !== 1">
-  <app-lessen></app-lessen>
-</div>
-<button (click)="navigateToQuiz()">Quiz {{ chapterId }}</button>

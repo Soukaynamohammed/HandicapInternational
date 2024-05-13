@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { GameComponent } from '../game/game.component';
+import { LessenComponent } from '../lessen/lessen.component'
 
 @Component({
   selector: 'app-chapter',

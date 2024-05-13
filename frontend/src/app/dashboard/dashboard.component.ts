@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter, ChapterService } from '../chapter.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
-})
-export class DashboardComponent implements OnInit {
   
-  chapters!: Chapter[];
+})
+export class DashboardComponent {
+  
+  constructor(private router: Router) {}
 
-  constructor(private chapterService: ChapterService) { console.log("Chapter 1: "+ this.chapters) }
+  
 
-  ngOnInit(): void {
-    this.loadChapters();
-    console.log("Chapter: "+ this.chapters)
+    navigateToChapter(chapter: number) {
+      this.router.navigate(['/chapter', chapter]);
+    
   }
 
-  loadChapters(): void {
-    this.chapterService.getAllChapters().subscribe(chapters => {
-      this.chapters = chapters;
-    });
-  }
+ 
+
+ 
 
 }

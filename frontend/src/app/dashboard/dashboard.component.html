@@ -1,11 +1,9 @@
-<div class="flex justify-center items-center flex-col" style="padding-top: 64px;"> <!-- Hier is 64px de hoogte van de app-navbar, pas deze waarde aan als dat nodig is -->
-  <!-- Navbar -->
+<div class="flex justify-center items-center flex-col" style="padding-top: 64px;"> 
   <app-navbar class="w-1/6"></app-navbar>
 
-  <!-- Chapters -->
   <div class="w-5/6 flex justify-center flex-col items-center"> <!-- flex-col toegevoegd -->
       <div *ngFor="let chapter of [1,2,3,4]" class="my-4"> <!-- Voeg my-4 toe voor verticale tussenruimte -->
-          <button class="bg-white border border-gray-300 text-black w-32 md:w-48 lg:w-64 text-center px-6 py-3 rounded-md mb-4">Chapter {{ chapter }}</button> <!-- Verander w-32 voor de gewenste breedte -->
+          <button class="bg-white border border-gray-300 text-black w-32 md:w-48 lg:w-64 text-center px-6 py-3 rounded-md mb-4" (click)="navigateToChapter(chapter)">Chapter {{ chapter }}</button> 
       </div>
   </div>
 </div>

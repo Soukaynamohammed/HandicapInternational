@@ -10,10 +10,6 @@ export class ChapterService {
   private baseUrl = 'http://localhost:8080/chapter';
 
   constructor(private http: HttpClient) { }
-
-  getAllChapters(): Observable<Chapter[]> {
-    return this.http.get<Chapter[]>(this.baseUrl);
-  }
 }
 
 

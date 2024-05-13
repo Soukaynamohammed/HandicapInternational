@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ChapterComponent } from './chapter/chapter.component';
+import { LessonComponent } from './lesson/lesson.component';
+import { GameComponent } from './game/game.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
     SideBarComponent,
     LoginComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChapterComponent,
+    LessonComponent,
+    GameComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
+      { path: 'chapter/:id', component: ChapterComponent },
+      { path: 'quiz/:id', component: QuizComponent }
     ]),
     CommonModule,
     AppRoutingModule,

@@ -16,15 +16,9 @@ public class HelloController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String sayHello() {
-        List<Message> messages = messageRepository.findAll();
-        if (messages.isEmpty()) {
-            return "Hello, World! No entries found";
-        } else {
-            return messages.stream()
-                    .map(Message::getContent)
-                    .collect(Collectors.joining("\n"));
-        }
+
+       return "index";
     }
 }

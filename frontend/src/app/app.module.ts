@@ -13,11 +13,11 @@ import { DashboardComponent } from './DashboardMap/dashboard/dashboard.component
 import { CommonModule } from '@angular/common';
 import { ChapterButtonComponent } from './DashboardMap/chapter-button/chapter-button.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ChapterComponent } from './Chapters/chapter/chapter.component';
-import { GameComponent } from './Chapters/game/game.component';
-import { LessenComponent } from './Chapters/lessen/lessen.component';
+import { ChapterComponent } from './ChaptersMap/chapter/chapter.component';
+import { GameComponent } from './ChaptersMap/game/game.component';
+import { LessenComponent } from './ChaptersMap/lessen/lessen.component';
 import { QuizComponent } from './QuizMap/quiz/quiz.component';
-
+import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { QuizComponent } from './QuizMap/quiz/quiz.component';
     ChapterComponent,
     GameComponent,
     LessenComponent,
-    QuizComponent
+    QuizComponent,
+    ContactPageComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { QuizComponent } from './QuizMap/quiz/quiz.component';
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'chapter/:id', component: ChapterComponent },
-      { path: 'quiz/:id', component: QuizComponent }
+      { path: 'quiz/:id', component: QuizComponent },
+      { path: 'contact', component: ContactPageComponent}
     ]),
     CommonModule,
     AppRoutingModule,

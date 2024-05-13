@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ChapterService {
 
-  private baseUrl = 'http://localhost:8080/api/chapter';
+  private baseUrl = 'http://localhost:8080/chapter';
 
   constructor(private http: HttpClient) { }
 

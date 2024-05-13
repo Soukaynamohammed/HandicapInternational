@@ -4,10 +4,7 @@ import com.bip.backend.entity.Chapter;
 import com.bip.backend.repository.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,15 @@ public class ChapterController {
         return chapterRepository.findAll();
     }
 
-
+    @GetMapping("/{id}")
+    public String getTitleById(@PathVariable Long id) {
+        Chapter chapter = chapterRepository.findById(id).orElse(null);
+        if (chapter != null) {
+            return chapter.getTitle();
+        } else {
+            return "Chapter not found";
+        }
+    }
 
 
 

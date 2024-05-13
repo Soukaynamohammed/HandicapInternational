@@ -3,11 +3,13 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@
 
 .chapterButtons{
     height: 7vh;
+    width: 50vw;
     background-color: white;
     color: black;
     font-weight: 500;
@@ -21,6 +22,9 @@
     padding: 2vh 10vw 8vh 10vw;
     border-radius: 1rem;
     margin: 5vh 2vw auto auto ;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
 }
 
 .sideTextChapters{
@@ -30,13 +34,9 @@
 
 #chapterButtonsDiv{
     margin-top: 10vh;
-    margin-left: 15rem;
 }
 
-.mx-auto{
-    width: 60vw;
-    text-align: center;
-}
+
 
 .chapterButtons:hover{
     background-color: rgba(83, 85, 214, 0.088);
@@ -60,27 +60,4 @@
 
 .scorePercentage{
     font-weight: 300;
-}
-
-#headTekst{
-    display: grid;
-    margin-bottom: -4vh;
-}
-
-
-#helpButton{
-    width: 6vw;
-    grid-column: 4/5;
-    font-size: 1.5vh;
-    font-weight: 600;
-    display: flex;
-    align-items: center; 
-    margin-right: -18vw;
-}
-
-#headTekst{
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    width: 100%;
 }

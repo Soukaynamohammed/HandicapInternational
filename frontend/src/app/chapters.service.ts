@@ -8,17 +8,34 @@ import { Observable } from 'rxjs';
 
 export class ChaptersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // this.getAllChapters().subscribe(chapters => {
+    //   this.chapters = chapters;
+    // });
+   }
 
     getChapterTitleById(id: number): Observable<string> {
         return this.http.get<string>(`http://localhost:8080/chapter/${id}`);
       }
     
-    getAllChapters(){
-      return this.http.get<Chapter>('http://localhost:8080/chapter');
+    getAllChapters(): Observable<Chapter[]>{
+      return this.http.get<Chapter[]>('http://localhost:8080/chapter');
     }
 }
 
-export class Chapter {
-  
+
+export interface Chapter {
+  id: number;
+  title: string;
 }
+
+
+// export class Chapter {
+//   id: number;
+//   title: string;
+  
+//   constructor(id: number, title: string) {
+//     this.id = id;
+//     this.title = title;
+//   }
+// }

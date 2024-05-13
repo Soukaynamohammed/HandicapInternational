@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { LoginComponent } from './LoginMap/login/login.component';
 import { DashboardComponent } from './DashboardMap/dashboard/dashboard.component';
-import {ContactPageComponent} from './ContactPageMap/contact-page/contact-page.component';
+import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

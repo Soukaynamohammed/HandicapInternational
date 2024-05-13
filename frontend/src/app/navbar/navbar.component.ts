@@ -16,7 +16,10 @@ export class NavbarComponent {
   protected readonly document = document;
 
   navigateToContactPage(){
-    this.router.navigate(['/contact'])
+    this.router.navigate(['/contact']);
   }
 
+  navigateToDashboard(){
+    this.router.navigate(['/dashboard']);
+  }
 }

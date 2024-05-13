@@ -18,6 +18,7 @@ import { GameComponent } from './ChaptersMap/game/game.component';
 import { LessenComponent } from './ChaptersMap/lessen/lessen.component';
 import { QuizComponent } from './QuizMap/quiz/quiz.component';
 import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page.component';
+import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page
     GameComponent,
     LessenComponent,
     QuizComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    QuizCardComponent
   ],
   imports: [
     BrowserModule,

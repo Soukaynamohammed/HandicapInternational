@@ -8,30 +8,24 @@ import { QuizService } from '../../Services/quiz.service'
 import { Question } from '../../Services/question.service'
 import { QuestionService } from '../../Services/question.service'
 
-
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss'
+  selector: 'app-quiz-card',
+  templateUrl: './quiz-card.component.html',
+  styleUrl: './quiz-card.component.scss'
 })
-export class QuizComponent implements OnInit{
-
+export class QuizCardComponent implements OnInit{
   constructor(private route: ActivatedRoute, private router: Router,private chapterService: ChaptersService, private quistionService: QuestionService, private quizService: QuizService) { }
 
   chapterId: number = 0 ;
-  chapters: Chapter[] =[];
   quizez: Quiz[] = [];
   questions: Question[] = [];
 
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
-    this.fetchChapter();
+    this.fetchAllQuistions();
+    this.fetchAllQuizez();
   }
-  fetchChapter(): void{
-    this.chapterService.getAllChapters().subscribe(chapters =>{
-      this.chapters = chapters;
-    })
-  }
+
 
   fetchAllQuizez(): void{
     this.quizService.getAllQuizez().subscribe(quizez =>{
@@ -44,5 +38,5 @@ export class QuizComponent implements OnInit{
       this.questions = questions;
     })
   }
-  
+
 }

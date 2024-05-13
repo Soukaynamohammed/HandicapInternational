@@ -6,7 +6,7 @@
     <div
       class="border-gray-300 border w-5/6 px-20 py-5 rounded-md flex justify-between"
     >
-      <h1 class="font-bold px-4 py-2 text-3xl">
+      <!-- <h1 class="font-bold px-4 py-2 text-3xl">
         Chapter {{ chapterId }}
         <span *ngIf="chapterId == 1" class="font-light text-2xl" font-light
           >- {{ chapters[0].title }}</span
@@ -20,11 +20,15 @@
         <span *ngIf="chapterId == 4" class="font-light text-2xl" font-light
           >- {{ chapters[3].title }}</span
         >
+      </h1> -->
+
+      <h1 class="font-bold px-4 py-2 text-3xl">
+        Chapter {{ chapterId }}
+        <span *ngIf="chapters.length >= chapterId" class="font-light text-2xl">
+          - {{ chapters[chapterId - 1].title }}
+        </span>
       </h1>
-      <!-- <button id="helpButton">
-        <img src="assets/icons/help-logo.png" alt="" />
-        <span>Help</span>
-      </button> -->
+
       <button
         class="flex items-center text-black px-4 py-2 rounded-md font-bold text-sm"
       >

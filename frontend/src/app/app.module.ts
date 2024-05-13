@@ -12,9 +12,9 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ChapterComponent } from './chapter/chapter.component';
-import { LessonComponent } from './lesson/lesson.component';
-import { GameComponent } from './game/game.component';
+import { ChapterComponent } from './Chapters/chapter/chapter.component';
+import { LessonComponent } from './Chapters/lesson/lesson.component';
+import { GameComponent } from './Chapters/game/game.component';
 import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({

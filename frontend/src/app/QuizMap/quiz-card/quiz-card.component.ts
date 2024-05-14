@@ -8,6 +8,7 @@ import { QuizService } from '../../Services/quiz.service'
 import { Question } from '../../Services/question.service'
 import { QuestionService } from '../../Services/question.service'
 
+
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',

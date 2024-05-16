@@ -1,9 +1,5 @@
-<div
-  *ngFor="let question of questions; let i = index"
-  class="custom-margin"
-  style="margin: 10vh auto 50vh 23vw"
->
-  <div *ngIf="i == currentQuestionIndex">
+<div *ngFor="let question of questions; let i = index" class="custom-margin">
+  <div *ngIf="i == currentQuestionIndex" style="margin: 10vh auto 50vh 23vw">
     <h2 class="text-2xl font-bold mb-2">Question {{ i + 1 }}.</h2>
     <h3 class="font-medium text-2xl mb-8">{{ question.text }}</h3>
     <label class="flex items-center text-xl mb-2">

@@ -25,11 +25,11 @@ export class QuizCardComponent implements OnInit{
   quizez: Quiz[] = [];
   questions: Question[] = [];
   @Input() chapterId: number = 0 ;
+  currentQuestionIndex: number = 0;
 
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchAllQuistions();
-    this.fetchAllQuizez();
   }
 
   fetchAllQuizez(): void{
@@ -42,6 +42,18 @@ export class QuizCardComponent implements OnInit{
     this.quistionService.getAllQuestionsByQuizId(this.chapterId).subscribe(questions =>{
       this.questions = questions;
     })
+  }
+
+  goToNextQuestion(): void {
+    if (this.currentQuestionIndex < this.questions.length - 1) {
+      this.currentQuestionIndex++;
+    }
+  }
+
+  goToPreviousQuestion(): void {
+    if (this.currentQuestionIndex > 0) {
+      this.currentQuestionIndex--;
+    }
   }
 
 }

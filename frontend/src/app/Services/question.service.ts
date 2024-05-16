@@ -10,10 +10,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   getAllQuestionsByQuizId(quizid: number): Observable<Question[]> {
-    console.error("call");
-
     return this.http.get<Question[]>(`http://localhost:8080/questions/${quizid}`);
-
   }
 }
 

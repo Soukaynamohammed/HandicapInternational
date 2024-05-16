@@ -1,3 +1,40 @@
-<div class="custom-margin" style="margin: 10vh auto 50vh 23vw">
-  <h2 class="text-2xl font-bold">Question: {{ questions[0].text }}</h2>
+<div
+  *ngFor="let question of questions; let i = index"
+  class="custom-margin"
+  style="margin: 10vh auto 50vh 23vw"
+>
+  <h2 class="text-2xl font-bold mb-2">Question {{ i + 1 }}.</h2>
+  <h3 class="font-medium text-2xl mb-8">{{ question.text }}</h3>
+  <label class="flex items-center text-xl mb-2">
+    <input type="checkbox" class="rounded-full border-gray-300 h-5 w-5 mr-2" />
+    {{ question.option1 }}
+  </label>
+
+  <label class="flex items-center text-xl mb-2">
+    <input type="checkbox" class="rounded-full border-gray-300 h-5 w-5 mr-2" />
+    {{ question.option2 }}
+  </label>
+
+  <label class="flex items-center text-xl mb-2">
+    <input type="checkbox" class="rounded-full border-gray-300 h-5 w-5 mr-2" />
+    {{ question.option3 }}
+  </label>
+
+  <label class="flex items-center text-xl mb-2">
+    <input type="checkbox" class="rounded-full border-gray-300 h-5 w-5 mr-2" />
+    {{ question.option4 }}
+  </label>
+  <div style="margin: 6vh auto auto 23vw">
+    <button *ngIf="i != 0" (click)="goToPreviousQuestion()" class="mr-4">
+      <img src="assets/icons/arrow-left.png" alt="" class="h-10" />
+    </button>
+    <button (click)="goToNextQuestion()">
+      <img
+        *ngIf="i != questions.length - 1"
+        src="assets/icons/arrow-right.png"
+        alt=""
+        class="h-10"
+      />
+    </button>
+  </div>
 </div>

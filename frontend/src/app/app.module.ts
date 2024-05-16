@@ -21,6 +21,8 @@ import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page
 import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
 import { ResultsComponent } from './QuizMap/results/results.component';
 import { ResultCardComponent } from './QuizMap/result-card/result-card.component';
+import { LandmineDialogComponent } from './ChaptersMap/landmine-dialog/landmine-dialog.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ResultCardComponent } from './QuizMap/result-card/result-card.component
     ContactPageComponent,
     QuizCardComponent,
     ResultsComponent,
-    ResultCardComponent
+    ResultCardComponent,
+    LandmineDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,9 @@ import { ResultCardComponent } from './QuizMap/result-card/result-card.component
     AppRoutingModule,
     HttpClientModule 
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

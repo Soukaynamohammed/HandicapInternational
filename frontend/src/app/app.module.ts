@@ -16,6 +16,8 @@ import { ChapterComponent } from './Chapters/chapter/chapter.component';
 import { LessonComponent } from './Chapters/lesson/lesson.component';
 import { GameComponent } from './Chapters/game/game.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LandmineDialogComponent } from './Chapters/landmine-dialog/landmine-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { QuizComponent } from './quiz/quiz.component';
     ChapterComponent,
     LessonComponent,
     GameComponent,
-    QuizComponent
+    QuizComponent,
+    LandmineDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,9 @@ import { QuizComponent } from './quiz/quiz.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

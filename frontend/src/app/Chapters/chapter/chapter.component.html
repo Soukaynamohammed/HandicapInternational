@@ -7,11 +7,11 @@
       <h1 class="font-bold px-4 py-2"> Chapter {{chapterId}} </h1>
       <button class="text-black px-4 py-2 rounded-md">Help</button>
     </div>
-    <div class="chapter-container border border-gray-300  w-5/6 px-20 py-5 rounded-md flex justify-between" *ngIf="chapterId === 1">
+    <div class="chapter-container border border-gray-300  w-5/6 px-20 py-5 rounded-md flex justify-center" *ngIf="chapterId === 1">
       <app-game></app-game>
     </div>
     
-    <div class="chapter-container border border-gray-300  w-5/6 mt-10 h-full py-5 rounded-md flex justify-between" *ngIf="chapterId !== 1">
+    <div class="chapter-container border border-gray-300  w-5/6 mt-10 h-full py-5 rounded-md flex justify-center" *ngIf="chapterId !== 1">
       <app-lesson></app-lesson>
     </div>
     <button class="border border-gray-300" (click)="navigateToQuiz()">Quiz {{ chapterId }}</button>

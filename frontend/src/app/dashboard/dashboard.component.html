@@ -2,8 +2,12 @@
   <app-navbar class="w-1/6"></app-navbar>
 
   <div class="w-5/6 flex justify-center flex-col items-center"> <!-- flex-col toegevoegd -->
-      <div *ngFor="let chapter of [1,2,3,4]" class="my-4"> <!-- Voeg my-4 toe voor verticale tussenruimte -->
-          <button class="bg-white border border-gray-300 text-black w-32 md:w-48 lg:w-64 text-center px-6 py-3 rounded-md mb-4" (click)="navigateToChapter(chapter)">Chapter {{ chapter }}</button> 
+      <div *ngFor="let chapter of chapters" class="my-4"> <!-- Voeg my-4 toe voor verticale tussenruimte -->
+          <button class="bg-white border border-gray-300 text-black w-32 md:w-48 lg:w-64 text-center px-6 py-3 rounded-md mb-4" 
+          (click)="navigateToChapter(chapter.id)">
+            <h2 class="text-xl font-bold">Chapter {{chapter.id}}</h2>
+            <p>{{chapter.title}}</p>
+          </button> 
       </div>
   </div>
 </div>

@@ -1,25 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChapterService {
 
-  private baseUrl = 'http://localhost:8080/chapter';
+export class ChaptersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   }
+    getAllChapters(): Observable<Chapter[]>{
+      return this.http.get<Chapter[]>('http://localhost:8080/chapter');
+    }
 }
 
 
-export class Chapter {
+export interface Chapter {
   id: number;
   title: string;
-  
-  constructor(id: number, title: string) {
-    this.id = id;
-    this.title = title;
-  }
 }
-

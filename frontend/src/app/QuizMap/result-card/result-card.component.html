@@ -1,0 +1,166 @@
+<div *ngFor="let question of questions; let i = index" class="custom-margin">
+  <div *ngIf="i == currentQuestionIndex" style="margin: 10vh auto 50vh 23vw">
+    <h2
+      *ngIf="question.correctAnswer != givenAnswers[i]"
+      class="scoreTekst text-xl mb-8 font-extrabold"
+      style="
+        color: red;
+        border: 2px solid red;
+        background-color: rgb(255, 207, 207);
+      "
+    >
+      Incorrect
+    </h2>
+    <h2
+      *ngIf="question.correctAnswer == givenAnswers[i]"
+      class="scoreTekst text-xl mb-8 font-extrabold"
+      style="
+        color: green;
+        border: 2px solid green;
+        background-color: rgb(180, 249, 180);
+      "
+    >
+      Correct
+    </h2>
+
+    <h2 class="mt-8 text-2xl font-bold mb-2">Question {{ i + 1 }}.</h2>
+    <h3 class="font-medium text-2xl mb-8">{{ question.text }}</h3>
+    <label class="vraag flex items-center text-xl mb-2">
+      <img
+        *ngIf="question.correctAnswer == 1"
+        src="/assets/icons/groen-vinkje.png"
+        alt=""
+        class="h-7 resIcon goedResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          givenAnswers[i] != question.correctAnswer &&
+          question.correctAnswer != 1
+        "
+        src="/assets/icons/fout-vinkje.png"
+        alt=""
+        class="h-7 resIcon foutResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          question.correctAnswer != 1 &&
+          givenAnswers[i] == question.correctAnswer
+        "
+        src="/assets/icons/neutraal-vinkje.png"
+        alt=""
+        class="h-7 resIcon"
+      />
+      {{ question.option1 }}
+    </label>
+
+    <label class="vraag flex items-center text-xl mb-2">
+      <img
+        *ngIf="question.correctAnswer == 2"
+        src="/assets/icons/groen-vinkje.png"
+        alt=""
+        class="h-7 resIcon goedResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          givenAnswers[i] != question.correctAnswer &&
+          question.correctAnswer != 2
+        "
+        src="/assets/icons/fout-vinkje.png"
+        alt=""
+        class="h-7 resIcon foutResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          question.correctAnswer != 2 &&
+          givenAnswers[i] == question.correctAnswer
+        "
+        src="/assets/icons/neutraal-vinkje.png"
+        alt=""
+        class="h-7 resIcon"
+      />
+      {{ question.option2 }}
+    </label>
+
+    <label class="vraag flex items-center text-xl mb-2">
+      <img
+        *ngIf="question.correctAnswer == 3"
+        src="/assets/icons/groen-vinkje.png"
+        alt=""
+        class="h-7 resIcon goedResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          givenAnswers[i] != question.correctAnswer &&
+          question.correctAnswer != 3
+        "
+        src="/assets/icons/fout-vinkje.png"
+        alt=""
+        class="h-7 resIcon foutResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          question.correctAnswer != 3 &&
+          givenAnswers[i] == question.correctAnswer
+        "
+        src="/assets/icons/neutraal-vinkje.png"
+        alt=""
+        class="h-7 resIcon"
+      />
+      {{ question.option3 }}
+    </label>
+
+    <label class="vraag flex items-center text-xl mb-2">
+      <img
+        *ngIf="question.correctAnswer == 4"
+        src="/assets/icons/groen-vinkje.png"
+        alt=""
+        class="h-7 resIcon goedResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          givenAnswers[i] != question.correctAnswer &&
+          question.correctAnswer != 4
+        "
+        src="/assets/icons/fout-vinkje.png"
+        alt=""
+        class="h-7 resIcon foutResultaatIcoontje"
+      />
+      <img
+        *ngIf="
+          question.correctAnswer != 4 &&
+          givenAnswers[i] == question.correctAnswer
+        "
+        src="/assets/icons/neutraal-vinkje.png"
+        alt=""
+        class="h-7 resIcon"
+      />
+      {{ question.option4 }}
+    </label>
+    <div style="margin: 6vh auto auto 23vw">
+      <div class="flex items-center">
+        <button
+          *ngIf="i !== 0 || (i !== 0 && questions.length - 1)"
+          (click)="goToPreviousQuestion()"
+          class="mr-4"
+        >
+          <img src="assets/icons/arrow-left.png" alt="" class="h-10" />
+        </button>
+        <button
+          *ngIf="i !== questions.length - 1"
+          (click)="goToNextQuestion()"
+          class="mr-4"
+        >
+          <img src="assets/icons/arrow-right.png" alt="" class="h-10" />
+        </button>
+        <button
+          *ngIf="i === questions.length - 1"
+          class="ml-8 py-2 px-3 custom-style rounded-lg md:rounded-md"
+          style="border: 3px solid #1e3050; color: #1e3050"
+          (click)="navigateToDashboard()"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,44 +11,28 @@ import { ResultsComponent } from '../results/results.component'
 import { QuestionAnwsersService } from '../../Services/question-anwsers.service'
 
 @Component({
-  selector: 'app-quiz-card',
-  templateUrl: './quiz-card.component.html',
-  styleUrl: './quiz-card.component.scss'
+  selector: 'app-result-card',
+  templateUrl: './result-card.component.html',
+  styleUrl: './result-card.component.scss'
 })
-export class QuizCardComponent implements OnInit{
+export class ResultCardComponent implements OnInit{
+
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    private chapterService: ChaptersService, 
     private quistionService: QuestionService, 
     private quizService: QuizService,
     private questionAnswersService: QuestionAnwsersService,
   ) { }
 
-  
-  givenAnswers: number[] = [];
-  quizez: Quiz[] = [];
+  givenAnswers: number[] = this.questionAnswersService.getAnswers();
   questions: Question[] = [];
-  @Input() chapterId: number = 0 ;
+  @Input() chapterId: number = 0;
   currentQuestionIndex: number = 0;
 
+  
   ngOnInit(): void {
-    this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchAllQuistions();
-  }
-
-  addAnswer(answerNumber: number){
-    this.givenAnswers.push(answerNumber);
-  }
-
-  saveAnswersInService(){
-    this.questionAnswersService.setAnswers(this.givenAnswers);
-  }
-
-  fetchAllQuizez(): void{
-    this.quizService.getAllQuizez().subscribe(quizez =>{
-      this.quizez = quizez;
-    })
   }
 
   fetchAllQuistions(): void{
@@ -69,8 +53,7 @@ export class QuizCardComponent implements OnInit{
     }
   }
 
-  navigateToResults(){
-    this.router.navigate([`/results/${this.chapterId}`]);
+  navigateToDashboard(){
+    this.router.navigate(['/dashboard'])
   }
-
 }

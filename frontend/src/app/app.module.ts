@@ -19,6 +19,8 @@ import { LessenComponent } from './ChaptersMap/lessen/lessen.component';
 import { QuizComponent } from './QuizMap/quiz/quiz.component';
 import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page.component';
 import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
+import { ResultsComponent } from './QuizMap/results/results.component';
+import { ResultCardComponent } from './QuizMap/result-card/result-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
     LessenComponent,
     QuizComponent,
     ContactPageComponent,
-    QuizCardComponent
+    QuizCardComponent,
+    ResultsComponent,
+    ResultCardComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,10 @@ import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
       { path: 'login', component: LoginComponent },
       { path: 'chapter/:id', component: ChapterComponent },
       { path: 'quiz/:id', component: QuizComponent },
-      { path: 'contact', component: ContactPageComponent}
+      { path: 'contact', component: ContactPageComponent},
+      { path: 'results/:id', component: ResultsComponent, canActivate: [AuthGuard]},
+      { path: 'quiz/:id', redirectTo: 'results/:id' },
+      
     ]),
     CommonModule,
     AppRoutingModule,

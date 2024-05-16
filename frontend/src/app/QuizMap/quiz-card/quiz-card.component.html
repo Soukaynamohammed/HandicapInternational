@@ -25,16 +25,28 @@
     {{ question.option4 }}
   </label>
   <div style="margin: 6vh auto auto 23vw">
-    <button *ngIf="i != 0" (click)="goToPreviousQuestion()" class="mr-4">
-      <img src="assets/icons/arrow-left.png" alt="" class="h-10" />
-    </button>
-    <button (click)="goToNextQuestion()">
-      <img
-        *ngIf="i != questions.length - 1"
-        src="assets/icons/arrow-right.png"
-        alt=""
-        class="h-10"
-      />
-    </button>
+    <div class="flex items-center">
+      <button
+        *ngIf="i !== 0 || (i !== 0 && questions.length - 1)"
+        (click)="goToPreviousQuestion()"
+        class="mr-4"
+      >
+        <img src="assets/icons/arrow-left.png" alt="" class="h-10" />
+      </button>
+      <button
+        *ngIf="i !== questions.length - 1"
+        (click)="goToNextQuestion()"
+        class="mr-4"
+      >
+        <img src="assets/icons/arrow-right.png" alt="" class="h-10" />
+      </button>
+      <button
+        *ngIf="i === questions.length - 1"
+        class="ml-8 py-2 px-3 custom-style rounded-lg md:rounded-md"
+        style="border: 3px solid #1e3050; color: #1e3050"
+      >
+        Get results!
+      </button>
+    </div>
   </div>
 </div>

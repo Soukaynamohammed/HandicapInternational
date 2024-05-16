@@ -26,10 +26,12 @@ export class QuizComponent implements OnInit{
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchChapter();
+    this.fetchAllQuistions();
   }
   fetchChapter(): void{
     this.chapterService.getAllChapters().subscribe(chapters =>{
       this.chapters = chapters;
+
     })
   }
 
@@ -40,7 +42,7 @@ export class QuizComponent implements OnInit{
   }
 
   fetchAllQuistions(): void{
-    this.quistionService.getAllQuestions().subscribe(questions =>{
+    this.quistionService.getAllQuestionsByQuizId(this.chapterId).subscribe(questions =>{
       this.questions = questions;
     })
   }

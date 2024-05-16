@@ -9,18 +9,27 @@ export class QuestionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>('http://localhost:8080/questions');
+  getAllQuestionsByQuizId(quizid: number): Observable<Question[]> {
+    console.error("call");
+
+    return this.http.get<Question[]>(`http://localhost:8080/questions/${quizid}`);
+
   }
 }
 
 export interface Question {
   id: number;
-  correct_answer: number;
+  text: string; 
   option1: string;
   option2: string;
   option3: string;
   option4: string;
-  questionTekst: string;
-  quiz_id: number;
+  correctAnswer: number; 
+  quiz: {
+    id: number; 
+    chapter: {
+      id: number;
+      title: string;
+    }
+  };
 }

@@ -8,11 +8,7 @@ import { Observable } from 'rxjs';
 
 export class ChaptersService {
 
-  constructor(private http: HttpClient) {
-    // this.getAllChapters().subscribe(chapters => {
-    //   this.chapters = chapters;
-    // });
-   }
+  constructor(private http: HttpClient) {}
 
     getChapterTitleById(id: number): Observable<string> {
         return this.http.get<string>(`http://localhost:8080/chapter/${id}`);

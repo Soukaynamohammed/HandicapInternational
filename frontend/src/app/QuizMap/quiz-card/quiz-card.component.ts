@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {NavbarComponent} from '../../navbar/navbar.component';
 import { ChaptersService } from '../../Services/chapters.service';
 import {Chapter} from  '../../Services/chapters.service';
@@ -15,18 +15,22 @@ import { QuestionService } from '../../Services/question.service'
   styleUrl: './quiz-card.component.scss'
 })
 export class QuizCardComponent implements OnInit{
-  constructor(private route: ActivatedRoute, private router: Router,private chapterService: ChaptersService, private quistionService: QuestionService, private quizService: QuizService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router,
+    private chapterService: ChaptersService, 
+    private quistionService: QuestionService, private quizService: QuizService) { }
 
-  chapterId: number = 0 ;
+  
   quizez: Quiz[] = [];
   questions: Question[] = [];
+  @Input() chapterId: number = 0 ;
 
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchAllQuistions();
     this.fetchAllQuizez();
   }
-
 
   fetchAllQuizez(): void{
     this.quizService.getAllQuizez().subscribe(quizez =>{
@@ -35,7 +39,7 @@ export class QuizCardComponent implements OnInit{
   }
 
   fetchAllQuistions(): void{
-    this.quistionService.getAllQuestions().subscribe(questions =>{
+    this.quistionService.getAllQuestionsByQuizId(this.chapterId).subscribe(questions =>{
       this.questions = questions;
     })
   }

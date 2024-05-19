@@ -34,7 +34,6 @@ export class QuizCardComponent implements OnInit{
   @Input() chapterId: number = 0 ;
   currentQuestionIndex: number = 0;
   allQuestionsFilled: boolean = false;
-  // errorBericht: string = "";
   resultsButtonClicked: boolean = false;
 
   ngOnInit(): void {
@@ -43,16 +42,39 @@ export class QuizCardComponent implements OnInit{
   }
 
   toggleAnswer(answerNumber: number, questionIndex: number): void {
-    this.givenAnswersCheckboxes[questionIndex][answerNumber - 1] = !this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
-    if (this.givenAnswersCheckboxes[questionIndex][answerNumber - 1]) {
-      this.givenAnswers.push(questionIndex,answerNumber);
-    } else {
-      const index = this.givenAnswers.indexOf(answerNumber);
-      if (index > -1) {
-        this.givenAnswers.splice(index, 1);
+    const isChecked = this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
+    
+    // Clear all checkboxes for the current question
+    this.givenAnswersCheckboxes[questionIndex].fill(false);
+    
+    // If the checkbox was checked, remove the answer
+    if (isChecked) {
+      // Remove the answer from the givenAnswers array
+      const indexToRemove = this.givenAnswers.indexOf(answerNumber);
+      if (indexToRemove > -1) {
+        this.givenAnswers.splice(indexToRemove, 1);
       }
+    } else {
+      // Set the selected checkbox
+      this.givenAnswersCheckboxes[questionIndex][answerNumber - 1] = true;
+      // Update the givenAnswers array
+      this.givenAnswers[questionIndex] = answerNumber;
     }
   }
+  
+  
+
+  // toggleAnswer(answerNumber: number, questionIndex: number): void {
+  //   this.givenAnswersCheckboxes[questionIndex][answerNumber - 1] = !this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
+  //   if (this.givenAnswersCheckboxes[questionIndex][answerNumber - 1]) {
+  //     this.givenAnswers.push(questionIndex,answerNumber);
+  //   } else {
+  //     const index = this.givenAnswers.indexOf(answerNumber);
+  //     if (index > -1) {
+  //       this.givenAnswers.splice(index, 1);
+  //     }
+  //   }
+  // }
   
   addAnswer(answerNumber: number){
     this.givenAnswers.push(answerNumber);

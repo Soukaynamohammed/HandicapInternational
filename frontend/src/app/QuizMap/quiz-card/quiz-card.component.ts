@@ -9,7 +9,8 @@ import { Question } from '../../Services/question.service'
 import { QuestionService } from '../../Services/question.service'
 import { ResultsComponent } from '../results/results.component'
 import { QuestionAnwsersService } from '../../Services/question-anwsers.service'
-
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorBerichtQuizComponent } from '../error-bericht-quiz/error-bericht-quiz.component'; 
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
@@ -23,6 +24,7 @@ export class QuizCardComponent implements OnInit{
     private quistionService: QuestionService, 
     private quizService: QuizService,
     private questionAnswersService: QuestionAnwsersService,
+    public dialog: MatDialog
   ) { }
 
   givenAnswersCheckboxes: boolean[][] = [];
@@ -32,7 +34,7 @@ export class QuizCardComponent implements OnInit{
   @Input() chapterId: number = 0 ;
   currentQuestionIndex: number = 0;
   allQuestionsFilled: boolean = false;
-  errorBericht: string = "";
+  // errorBericht: string = "";
   resultsButtonClicked: boolean = false;
 
   ngOnInit(): void {
@@ -63,6 +65,9 @@ export class QuizCardComponent implements OnInit{
 
     if (this.allQuestionsFilled) {
       this.navigateToResults();
+    } 
+    else {
+      this.openErrorDialog()
     }
   }
 
@@ -70,13 +75,19 @@ export class QuizCardComponent implements OnInit{
     this.allQuestionsFilled = this.givenAnswersCheckboxes.every(
       options => options.some(option => option)
     );
-
-    if (!this.allQuestionsFilled && this.resultsButtonClicked) {
-      this.errorBericht = "Answer all the questions before you can continue.";
-    } else {
-      this.errorBericht = "";
-    }
   }
+
+  openErrorDialog(): void {
+    const dialogRef = this.dialog.open(ErrorBerichtQuizComponent, {
+      width: '400px',
+      data: "Answer all the questions before you can continue."
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 
   fetchAllQuizez(): void{
     this.quizService.getAllQuizez().subscribe(quizez =>{

@@ -24,6 +24,10 @@ import { ResultCardComponent } from './QuizMap/result-card/result-card.component
 import { LandmineDialogComponent } from './ChaptersMap/landmine-dialog/landmine-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ErrorBerichtQuizComponent } from './QuizMap/error-bericht-quiz/error-bericht-quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -42,9 +46,12 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     QuizCardComponent,
     ResultsComponent,
     ResultCardComponent,
-    LandmineDialogComponent
+    LandmineDialogComponent,
+    ErrorBerichtQuizComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     FormsModule,
     BrowserModule,
     AuthModule.forRoot({

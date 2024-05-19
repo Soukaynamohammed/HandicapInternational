@@ -1,6 +1,44 @@
-<ul>
-  <li *ngFor="let infoCard of infoCards">
-    <h2 class="font-bold mt-6 mb-2">{{ infoCard.subtitle }}</h2>
-    <p>{{ infoCard.alineaText }}</p>
-  </li>
-</ul>
+<div
+  *ngFor="let infoCard of infoCards; let i = index"
+  class="container-infocard custom-margin"
+>
+  <div *ngIf="i == currentPageIndex" style="margin: 5vh auto 5vh 23vw">
+    <div class="info-container">
+      <div>
+        <h3 class="font-medium text-2xl mb-8">{{ infoCard.subtitle }}</h3>
+        <p>{{ infoCard.alineaText }}</p>
+      </div>
+      <img
+        src="../../../assets/searching-landmine.png"
+        alt=""
+        class="info-image"
+      />
+    </div>
+    <div style="margin: 6vh auto auto 23vw">
+      <div class="flex items-center">
+        <button
+          *ngIf="i !== 0 || (i !== 0 && infoCards.length - 1)"
+          (click)="goToPreviousQuestion()"
+          class="mr-4"
+        >
+          <img src="assets/icons/arrow-left.png" alt="" class="h-10" />
+        </button>
+        <button
+          *ngIf="i !== infoCards.length - 1"
+          (click)="goToNextQuestion()"
+          class="mr-4"
+        >
+          <img src="assets/icons/arrow-right.png" alt="" class="h-10" />
+        </button>
+        <button
+          *ngIf="i === infoCards.length - 1"
+          class="ml-8 py-2 px-3 custom-style rounded-lg md:rounded-md"
+          style="border: 3px solid #1e3050; color: #1e3050"
+          (click)="navigateToQuiz()"
+        >
+          Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

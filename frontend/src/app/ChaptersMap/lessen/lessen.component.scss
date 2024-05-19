@@ -1,0 +1,21 @@
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add space between the text and the image */
+  }
+  
+  .info-container > div {
+    flex: 1; /* Allow the text container to take up available space */
+  }
+  
+  .info-image {
+    margin-left: 5vw; /* Adjust margin as needed for spacing */
+    max-width: 400px; /* Adjust size as needed */
+    border-radius: 30px;
+  }
+  
+
+  .container-infocard{
+    width: 80vw;
+  }
+

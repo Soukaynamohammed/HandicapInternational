@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoCard,InfocardService } from '../../Services/infocard.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lessen',
@@ -9,9 +9,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './lessen.component.scss'
 })
 export class LessenComponent implements OnInit {
+  
+  constructor(private infoCardService: InfocardService, private http:HttpClient, private route: ActivatedRoute,private router: Router) { }
+
   infoCards: InfoCard[] = [];
   chapterId: number =0;
-  constructor(private infoCardService: InfocardService, private http:HttpClient, private route: ActivatedRoute) { }
+  currentPageIndex: number = 0;
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -20,5 +23,18 @@ export class LessenComponent implements OnInit {
       .subscribe(infoCards => this.infoCards = infoCards);
     });
   }
- 
+  goToNextQuestion(): void {
+    if (this.currentPageIndex < this.infoCards.length - 1) {
+      this.currentPageIndex++;
+    }
+  }
+
+  goToPreviousQuestion(): void {
+    if (this.currentPageIndex > 0) {
+      this.currentPageIndex--;
+    }
+  }
+  navigateToQuiz(): void {
+    this.router.navigate(['/quiz', this.chapterId]);
+  }
 }

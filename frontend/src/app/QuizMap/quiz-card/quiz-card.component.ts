@@ -31,6 +31,9 @@ export class QuizCardComponent implements OnInit{
   questions: Question[] = [];
   @Input() chapterId: number = 0 ;
   currentQuestionIndex: number = 0;
+  allQuestionsFilled: boolean = false;
+  errorBericht: string = "";
+  resultsButtonClicked: boolean = false;
 
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
@@ -53,8 +56,26 @@ export class QuizCardComponent implements OnInit{
     this.givenAnswers.push(answerNumber);
   }
 
-  saveAnswersInService(){
+  saveAnswersInService(): void {
     this.questionAnswersService.setAnswers(this.givenAnswers);
+    this.resultsButtonClicked = true;
+    this.updateErrorBericht();
+
+    if (this.allQuestionsFilled) {
+      this.navigateToResults();
+    }
+  }
+
+  updateErrorBericht(): void {
+    this.allQuestionsFilled = this.givenAnswersCheckboxes.every(
+      options => options.some(option => option)
+    );
+
+    if (!this.allQuestionsFilled && this.resultsButtonClicked) {
+      this.errorBericht = "Answer all the questions before you can continue.";
+    } else {
+      this.errorBericht = "";
+    }
   }
 
   fetchAllQuizez(): void{
@@ -86,7 +107,9 @@ export class QuizCardComponent implements OnInit{
   }
 
   navigateToResults(){
-    this.router.navigate([`/results/${this.chapterId}`]);
-  }
+    if (this.allQuestionsFilled) {
+      this.router.navigate([`/results/${this.chapterId}`]);
+    }
 
+  }
 }

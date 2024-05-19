@@ -61,10 +61,17 @@
           *ngIf="i === questions.length - 1"
           class="ml-8 py-2 px-3 custom-style rounded-lg md:rounded-md"
           style="border: 3px solid #1e3050; color: #1e3050"
-          (click)="saveAnswersInService(); navigateToResults()"
+          (click)="saveAnswersInService()"
         >
           Results
         </button>
+        <h3
+          *ngIf="!allQuestionsFilled && i == questions.length - 1"
+          class="ml-8 font-bold"
+          style="color: red"
+        >
+          {{ errorBericht }}
+        </h3>
       </div>
     </div>
   </div>

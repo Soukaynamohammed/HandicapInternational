@@ -6,7 +6,8 @@
       <input
         type="checkbox"
         class="rounded-full border-gray-300 h-5 w-5 mr-2"
-        (change)="addAnswer(1)"
+        (change)="toggleAnswer(1, i)"
+        [checked]="givenAnswersCheckboxes[i][0]"
       />
       {{ question.option1 }}
     </label>
@@ -15,7 +16,8 @@
       <input
         type="checkbox"
         class="rounded-full border-gray-300 h-5 w-5 mr-2"
-        (change)="addAnswer(2)"
+        (change)="toggleAnswer(2, i)"
+        [checked]="givenAnswersCheckboxes[i][1]"
       />
       {{ question.option2 }}
     </label>
@@ -24,7 +26,8 @@
       <input
         type="checkbox"
         class="rounded-full border-gray-300 h-5 w-5 mr-2"
-        (change)="addAnswer(3)"
+        (change)="toggleAnswer(3, i)"
+        [checked]="givenAnswersCheckboxes[i][2]"
       />
       {{ question.option3 }}
     </label>
@@ -33,7 +36,8 @@
       <input
         type="checkbox"
         class="rounded-full border-gray-300 h-5 w-5 mr-2"
-        (change)="addAnswer(4)"
+        (change)="toggleAnswer(4, i)"
+        [checked]="givenAnswersCheckboxes[i][3]"
       />
       {{ question.option4 }}
     </label>

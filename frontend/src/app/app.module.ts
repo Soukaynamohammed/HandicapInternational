@@ -23,6 +23,7 @@ import { ResultsComponent } from './QuizMap/results/results.component';
 import { ResultCardComponent } from './QuizMap/result-card/result-card.component';
 import { LandmineDialogComponent } from './ChaptersMap/landmine-dialog/landmine-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LandmineDialogComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AuthModule.forRoot({
       domain: 'dev-xm0bfaw617xwcgcw.eu.auth0.com',

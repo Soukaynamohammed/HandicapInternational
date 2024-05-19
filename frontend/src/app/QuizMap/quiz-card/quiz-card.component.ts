@@ -25,7 +25,7 @@ export class QuizCardComponent implements OnInit{
     private questionAnswersService: QuestionAnwsersService,
   ) { }
 
-  
+  givenAnswersCheckboxes: boolean[][] = [];
   givenAnswers: number[] = [];
   quizez: Quiz[] = [];
   questions: Question[] = [];
@@ -37,6 +37,18 @@ export class QuizCardComponent implements OnInit{
     this.fetchAllQuistions();
   }
 
+  toggleAnswer(answerNumber: number, questionIndex: number): void {
+    this.givenAnswersCheckboxes[questionIndex][answerNumber - 1] = !this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
+    if (this.givenAnswersCheckboxes[questionIndex][answerNumber - 1]) {
+      this.givenAnswers.push(questionIndex,answerNumber);
+    } else {
+      const index = this.givenAnswers.indexOf(answerNumber);
+      if (index > -1) {
+        this.givenAnswers.splice(index, 1);
+      }
+    }
+  }
+  
   addAnswer(answerNumber: number){
     this.givenAnswers.push(answerNumber);
   }
@@ -54,6 +66,10 @@ export class QuizCardComponent implements OnInit{
   fetchAllQuistions(): void{
     this.quistionService.getAllQuestionsByQuizId(this.chapterId).subscribe(questions =>{
       this.questions = questions;
+
+      this.givenAnswersCheckboxes = Array.from({ length: this.questions.length }, () =>
+      Array(4).fill(false)
+    );
     })
   }
 

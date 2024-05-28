@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ChaptersService } from '../../Services/chapters.service';
 import {Chapter} from  '../../Services/chapters.service';
 import { Router } from '@angular/router';
+import { ProgressService } from '../../Services/progress.service';
+import { Progress } from '../../Services/progress.service'
+
 
 @Component({
   selector: 'app-chapter-button',
@@ -10,15 +13,22 @@ import { Router } from '@angular/router';
 })
 export class ChapterButtonComponent implements OnInit{
 
-  constructor(private chapterService: ChaptersService, private router: Router,  ) { }
+  constructor(private chapterService: ChaptersService, private router: Router, private progressService: ProgressService ) { }
   
   chapterTitle: string = "";
+  chapters: Chapter[] =[];
+  progresses: Progress[] = [];
+
 
   ngOnInit(): void {
     this.fetchChapter();
   }
 
-  chapters: Chapter[] =[];
+  fetchProgress(){
+    this.progressService.getAllProgress().subscribe(progress => {
+      this.progresses = progress
+    })
+  }
 
   fetchChapter():void{
     this.chapterService.getAllChapters().subscribe(chapters =>{

@@ -11,6 +11,10 @@ import { ResultsComponent } from '../results/results.component'
 import { QuestionAnwsersService } from '../../Services/question-anwsers.service'
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorBerichtQuizComponent } from '../error-bericht-quiz/error-bericht-quiz.component'; 
+import { ProgressService } from '../../Services/progress.service';
+import { Progress } from '../../Services/progress.service';
+import { AuthService } from '@auth0/auth0-angular'
+ 
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
@@ -20,11 +24,13 @@ export class QuizCardComponent implements OnInit{
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    private chapterService: ChaptersService, 
+    private chapterService: ChaptersService,
     private quistionService: QuestionService, 
     private quizService: QuizService,
     private questionAnswersService: QuestionAnwsersService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private progressService: ProgressService,
+    private authService: AuthService
   ) { }
 
   givenAnswersCheckboxes: boolean[][] = [];
@@ -39,6 +45,40 @@ export class QuizCardComponent implements OnInit{
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchAllQuistions();
+  }
+
+  calculateProgress() : number {
+
+    const totalQuestions = this.questions.length;
+    var totalCorrect = 0;
+
+    for (let i = 0; i < totalQuestions; i++) {
+      const correctAnswer = this.questions[i].correctAnswer;
+      const currenAnswer = this.givenAnswers[i];
+      if (correctAnswer == currenAnswer) {
+        totalCorrect++;
+      }
+    }
+    
+    const scorePercentage = (totalCorrect / totalQuestions) * 100;
+
+    return scorePercentage;
+  }
+
+  saveProgress(){
+    this.authService.user$.subscribe(
+      (user) => {
+        const scorePercentage = this.calculateProgress();
+        if (user?.sub) {
+          this.progressService.postScore(scorePercentage, this.chapterId, user.sub);
+        }else {
+          console.log('not logged in!')
+        }
+        
+      }
+    )
+    
+
   }
 
   toggleAnswer(answerNumber: number, questionIndex: number): void {
@@ -81,6 +121,7 @@ export class QuizCardComponent implements OnInit{
   }
 
   saveAnswersInService(): void {
+    this.saveProgress()
     this.questionAnswersService.setAnswers(this.givenAnswers);
     this.resultsButtonClicked = true;
     this.updateErrorBericht();

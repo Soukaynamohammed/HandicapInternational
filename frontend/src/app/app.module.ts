@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,12 +21,12 @@ import { ContactPageComponent } from './ContactPageMap/contact-page/contact-page
 import { QuizCardComponent } from './QuizMap/quiz-card/quiz-card.component';
 import { ResultsComponent } from './QuizMap/results/results.component';
 import { ResultCardComponent } from './QuizMap/result-card/result-card.component';
-import { LandmineDialogComponent } from './ChaptersMap/landmine-dialog/landmine-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ErrorBerichtQuizComponent } from './QuizMap/error-bericht-quiz/error-bericht-quiz.component';
+import { BaseDialogComponent } from './base-dialog/base-dialog.component';
 
 
 @NgModule({
@@ -46,8 +46,8 @@ import { ErrorBerichtQuizComponent } from './QuizMap/error-bericht-quiz/error-be
     QuizCardComponent,
     ResultsComponent,
     ResultCardComponent,
-    LandmineDialogComponent,
-    ErrorBerichtQuizComponent
+    ErrorBerichtQuizComponent,
+    BaseDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,7 +70,6 @@ import { ErrorBerichtQuizComponent } from './QuizMap/error-bericht-quiz/error-be
       { path: 'contact', component: ContactPageComponent},
       { path: 'results/:id', component: ResultsComponent, canActivate: [AuthGuard]},
       { path: 'quiz/:id', redirectTo: 'results/:id' },
-      
     ]),
     CommonModule,
     AppRoutingModule,
@@ -79,6 +78,7 @@ import { ErrorBerichtQuizComponent } from './QuizMap/error-bericht-quiz/error-be
   providers: [
     provideAnimationsAsync()
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

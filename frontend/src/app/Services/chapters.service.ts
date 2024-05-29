@@ -17,6 +17,17 @@ export class ChaptersService {
     getAllChapters(): Observable<Chapter[]>{
       return this.http.get<Chapter[]>('http://localhost:8080/chapter');
     }
+
+
+    public get id(): number {
+      return this.id;
+    }
+
+    public set id(value: number) {
+      this.id = value;
+    }
+
+
 }
 
 

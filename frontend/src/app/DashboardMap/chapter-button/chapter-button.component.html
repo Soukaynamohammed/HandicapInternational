@@ -5,6 +5,9 @@
   </button>
   <h3 class="score">
     Score
-    <p class="scorePercentage">%</p>
+    <p *ngIf="hasProgress(chapter.id) == true" class="scorePercentage">
+      {{ findProgress(chapter.id) }}%
+    </p>
+    <p *ngIf="hasProgress(chapter.id) == false" class="scorePercentage">-</p>
   </h3>
 </div>

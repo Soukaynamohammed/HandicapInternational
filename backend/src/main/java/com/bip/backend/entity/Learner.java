@@ -10,6 +10,8 @@ public class Learner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    private String authId;
     private String name;
     private Date dateOfBirth;
     private String occupation;
@@ -19,11 +21,12 @@ public class Learner {
     public Learner() {
     }
 
-    public Learner(int id, String name, Date dateOfBirth, String occupation) {
+    public Learner(int id, String name, Date dateOfBirth, String occupation, String AuthId) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.occupation = occupation;
+        this.authId = authId;
     }
 
     public int getId() {
@@ -56,5 +59,13 @@ public class Learner {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public String getAuthId() {
+        return authId;
+    }
+
+    public void setAuthId(String authId) {
+        this.authId = authId;
     }
 }

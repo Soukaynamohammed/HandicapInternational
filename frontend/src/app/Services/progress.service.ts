@@ -10,8 +10,8 @@ export class ProgressService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProgress(): Observable<Progress[]>{
-    return this.http.get<Progress[]>(`http://localhost:8080/progress/learner/{}`);
+  getAllProgress(learnerId: string): Observable<Progress[]>{
+    return this.http.get<Progress[]>(`http://localhost:8080/progress/learner/${learnerId}`);
   }
 
   postScore(progressPercentage: number, chapterId: number, learnerId: string): Observable<Progress> {

@@ -15,24 +15,29 @@ import { AuthService } from '@auth0/auth0-angular';
 export class ChapterButtonComponent implements OnInit{
 
   constructor(private chapterService: ChaptersService, private router: Router, private progressService: ProgressService,private authService: AuthService ) { }
-  
+
   chapterTitle: string = "";
   chapters: Chapter[] =[];
   progresses: Progress[] = [];
   userId: string = "";
+  isLoadedProgresses: boolean = false;
 
   ngOnInit(): void {
     this.fetchChapter();
-    this.fetchProgress();
+    this.fetchLearnerId();
+
   }
 
-  getLearnerId(): string{
+  fetchLearnerId(): string{
     this.authService.user$.subscribe(
       (user) => {
+        console.error("sub reached!")
         if (user?.sub) {
-          this.userId = user.sub; 
+          this.userId = user.sub;
+          console.error("learner id set to " + user.sub)
+          this.fetchProgress();
         } else {
-          console.log("learner id not found")
+          console.error("learner id not found")
         }
       }
     );
@@ -40,8 +45,9 @@ export class ChapterButtonComponent implements OnInit{
   }
 
   findProgress(chapterId: number) : number {
+    console.error(this.progresses);
     for (let i = 0; i < this.progresses.length; i++) {
-      if (chapterId == this.progresses[i].chapter_id) {
+      if (chapterId == this.progresses[i].chapter.id) {
         return this.progresses[i].score
       }
     }
@@ -49,17 +55,22 @@ export class ChapterButtonComponent implements OnInit{
   }
 
   hasProgress(chapterId: number) :  boolean{
+    // console.error(chapterId);
+    // console.error(this.progresses);
     for (let i = 0; i < this.progresses.length; i++) {
-      if (chapterId == this.progresses[i].chapter_id) {
+      if (chapterId == this.progresses[i].chapter.id) {
+        console.error(`Progress found for ${chapterId}`);
         return true;
       }
     }
+    //console.error(`No progress found for ${chapterId}`);
     return false;
   }
 
   fetchProgress(){
     this.progressService.getAllProgress(this.userId).subscribe(progress => {
       this.progresses = progress
+      this.isLoadedProgresses = true;
     })
   }
 

@@ -12,20 +12,14 @@ public class Learner {
     private int id;
 
     private String authId;
-    private String name;
-    private Date dateOfBirth;
-    private String occupation;
 
     @OneToMany(mappedBy = "learner")
     private List<Progress> progressList;
     public Learner() {
     }
 
-    public Learner(int id, String name, Date dateOfBirth, String occupation, String AuthId) {
+    public Learner(int id, String authId) {
         this.id = id;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-        this.occupation = occupation;
         this.authId = authId;
     }
 
@@ -35,30 +29,6 @@ public class Learner {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
     }
 
     public String getAuthId() {

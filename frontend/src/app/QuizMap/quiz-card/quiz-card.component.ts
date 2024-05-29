@@ -10,11 +10,11 @@ import { QuestionService } from '../../Services/question.service'
 import { ResultsComponent } from '../results/results.component'
 import { QuestionAnwsersService } from '../../Services/question-anwsers.service'
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorBerichtQuizComponent } from '../error-bericht-quiz/error-bericht-quiz.component'; 
+import { ErrorBerichtQuizComponent } from '../error-bericht-quiz/error-bericht-quiz.component';
 import { ProgressService } from '../../Services/progress.service';
 import { Progress } from '../../Services/progress.service';
 import { AuthService } from '@auth0/auth0-angular'
- 
+
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
@@ -22,10 +22,10 @@ import { AuthService } from '@auth0/auth0-angular'
 })
 export class QuizCardComponent implements OnInit{
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
     private chapterService: ChaptersService,
-    private quistionService: QuestionService, 
+    private quistionService: QuestionService,
     private quizService: QuizService,
     private questionAnswersService: QuestionAnwsersService,
     public dialog: MatDialog,
@@ -41,10 +41,28 @@ export class QuizCardComponent implements OnInit{
   currentQuestionIndex: number = 0;
   allQuestionsFilled: boolean = false;
   resultsButtonClicked: boolean = false;
+  userId: string = "";
 
   ngOnInit(): void {
     this.chapterId = +this.route.snapshot?.paramMap.get('id')!;
     this.fetchAllQuistions();
+    this.fetchLearnerId();
+  }
+
+
+  fetchLearnerId(): string{
+    this.authService.user$.subscribe(
+      (user) => {
+        console.error("sub reached!")
+        if (user?.sub) {
+          this.userId = user.sub;
+          console.error("learner id set to " + user.sub)
+        } else {
+          console.error("learner id not found")
+        }
+      }
+    );
+    return "nulll"
   }
 
   calculateProgress() : number {
@@ -59,34 +77,23 @@ export class QuizCardComponent implements OnInit{
         totalCorrect++;
       }
     }
-    
+
     const scorePercentage = (totalCorrect / totalQuestions) * 100;
 
     return scorePercentage;
   }
 
   saveProgress(){
-    this.authService.user$.subscribe(
-      (user) => {
-        const scorePercentage = this.calculateProgress();
-        if (user?.sub) {
-          this.progressService.postScore(scorePercentage, this.chapterId, user.sub);
-        }else {
-          console.log('not logged in!')
-        }
-        
-      }
-    )
-    
-
+    const scorePercentage = this.calculateProgress();
+    this.progressService.postScore(scorePercentage, this.chapterId, this.userId).subscribe();
   }
 
   toggleAnswer(answerNumber: number, questionIndex: number): void {
     const isChecked = this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
-    
+
     // Clear all checkboxes for the current question
     this.givenAnswersCheckboxes[questionIndex].fill(false);
-    
+
     // If the checkbox was checked, remove the answer
     if (isChecked) {
       // Remove the answer from the givenAnswers array
@@ -101,8 +108,8 @@ export class QuizCardComponent implements OnInit{
       this.givenAnswers[questionIndex] = answerNumber;
     }
   }
-  
-  
+
+
 
   // toggleAnswer(answerNumber: number, questionIndex: number): void {
   //   this.givenAnswersCheckboxes[questionIndex][answerNumber - 1] = !this.givenAnswersCheckboxes[questionIndex][answerNumber - 1];
@@ -115,7 +122,7 @@ export class QuizCardComponent implements OnInit{
   //     }
   //   }
   // }
-  
+
   addAnswer(answerNumber: number){
     this.givenAnswers.push(answerNumber);
   }
@@ -128,7 +135,7 @@ export class QuizCardComponent implements OnInit{
 
     if (this.allQuestionsFilled) {
       this.navigateToResults();
-    } 
+    }
     else {
       this.openErrorDialog()
     }
@@ -145,7 +152,7 @@ export class QuizCardComponent implements OnInit{
       width: '400px',
       data: "Answer all the questions before you can continue."
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

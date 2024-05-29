@@ -4,7 +4,8 @@ import { InfoCard, InfocardService } from '../../Services/infocard.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { LandmineDialogComponent } from '../landmine-dialog/landmine-dialog.component';
+import { BaseDialogComponent } from '../../base-dialog/base-dialog.component';
+import { DialogServiceService } from '../../Services/dialog-service.service';
 
 @Component({
   selector: 'app-game',
@@ -18,7 +19,7 @@ export class GameComponent implements OnInit{
   infoCards: InfoCard[] = [];
   pressedmines:number = 0;
   
-  constructor( public dialog: MatDialog, private infoCardService: InfocardService, private http:HttpClient, private route: ActivatedRoute) {
+  constructor( public popup: DialogServiceService, public dialog: MatDialog, private infoCardService: InfocardService, private http:HttpClient, private route: ActivatedRoute) {
     
     this.initializeCorrectPath();
   }
@@ -28,6 +29,7 @@ export class GameComponent implements OnInit{
       this.infoCardService.getInfoCardsByChapterId(1)
       .subscribe(infoCards => this.infoCards = infoCards);
     });
+    this.popup.openGameExplanationDialog();
   }
 
   isSafePath(row: number, col: number): boolean {
@@ -63,14 +65,22 @@ export class GameComponent implements OnInit{
         if (row === 1 && col === 1) {
           this.triggerConfetti();
         }
+        
+        if (row === 1 && col === 2 && this.pressedmines < 4) {
+          for (let i = this.pressedmines; i < 4; i++) {
+            this.popup.openLandmineDialog(this.infoCards[i]);
+            this.pressedmines++;
+          }
+          return;
+        }
       } else {
-        this.openLandmineDialog(this.infoCards[this.pressedmines]);
+        this.popup.openLandmineDialog(this.infoCards[this.pressedmines]);
         this.pressedmines++;
       }
       this.isCorrectPath[row][col] = true; // Mark the square as visited
     } else {
       // Display modal with information about invalid move
-      alert('Invalid move! You can only move to an adjacent square.');
+      this.popup.openInvalidMove()
     }
   }
   triggerConfetti(): void {
@@ -81,14 +91,6 @@ export class GameComponent implements OnInit{
     });
 
   }
-  openLandmineDialog(infoCard: InfoCard): void {
-    const dialogRef = this.dialog.open(LandmineDialogComponent, {
-      width: '400px',
-      data: infoCard
-    });
+
   
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
 }

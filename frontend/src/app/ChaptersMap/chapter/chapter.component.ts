@@ -5,6 +5,8 @@ import { GameComponent } from '../game/game.component';
 import { LessenComponent } from '../lessen/lessen.component'
 import { ChaptersService } from '../../Services/chapters.service';
 import {Chapter} from  '../../Services/chapters.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogServiceService } from '../../Services/dialog-service.service';
 
 @Component({
   selector: 'app-chapter',
@@ -13,7 +15,7 @@ import {Chapter} from  '../../Services/chapters.service';
 })
 export class ChapterComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router,private chapterService: ChaptersService) { }
+  constructor(public popup: DialogServiceService, public dialog: MatDialog,private route: ActivatedRoute, private router: Router,private chapterService: ChaptersService) { }
 
   chapterId: number = 0 ;
   chapters: Chapter[] =[];
@@ -32,4 +34,6 @@ export class ChapterComponent implements OnInit {
       this.chapters = chapters;
     })
   }
+ 
+  
 }

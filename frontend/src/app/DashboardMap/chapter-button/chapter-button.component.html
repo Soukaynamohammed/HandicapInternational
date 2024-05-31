@@ -9,7 +9,7 @@
       *ngIf="isLoadedProgresses && hasProgress(chapter.id) == true"
       class="scorePercentage"
     >
-      {{ findProgress(chapter.id) }}%
+      {{ findProgress(chapter.id) | number : "1.0-0" }}%
     </p>
     <p
       *ngIf="!isLoadedProgresses || hasProgress(chapter.id) == false"

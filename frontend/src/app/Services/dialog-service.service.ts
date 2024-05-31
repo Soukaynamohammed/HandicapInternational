@@ -29,7 +29,12 @@ export class DialogServiceService {
       data: {
         title: infoCard.subtitle,  // Assuming InfoCard has a title property
         content: infoCard.alineaText,  // Assuming InfoCard has a content property (could be HTML)
-        imageUrl: "assets/searching-landmine.png"  // Assuming InfoCard has an imageUrl property
+        imageUrl: 
+        'assets/quizpics/' +
+          infoCard.chapter.id +
+          '/' +
+          infoCard.orderNumber +
+          '.jpg'
       }
     });
   

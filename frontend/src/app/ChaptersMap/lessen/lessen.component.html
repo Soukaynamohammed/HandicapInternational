@@ -9,7 +9,13 @@
         <p>{{ infoCard.alineaText }}</p>
       </div>
       <img
-        src="../../../assets/searching-landmine.png"
+        [src]="
+          '../../../assets/quizpics/' +
+          infoCard.chapter.id +
+          '/' +
+          infoCard.orderNumber +
+          '.jpg'
+        "
         alt=""
         class="info-image"
       />

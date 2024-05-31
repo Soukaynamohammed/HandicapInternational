@@ -12,7 +12,7 @@ import { QuestionAnwsersService } from '../../Services/question-anwsers.service'
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorBerichtQuizComponent } from '../error-bericht-quiz/error-bericht-quiz.component';
 import { ProgressService } from '../../Services/progress.service';
-import { Progress } from '../../Services/progress.service';
+//import { Progress } from '../../Services/progress.service';
 import { AuthService } from '@auth0/auth0-angular'
 
 @Component({
